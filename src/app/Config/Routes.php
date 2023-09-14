@@ -32,8 +32,21 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
 
+
+
+// Web routes
+$routes->get('/', 'Home::index');
+$routes->get('/comments', '\App\Controllers\CommentsPage::index');
+
+// Api routes
+//$routes->resource('api/v1/comments', [
+//	'controller' => '\App\Controllers\API\v1\Comments',
+//	'placeholder' => '(:id)'
+//]);
+$routes->get('api/v1/comments', '\App\Controllers\API\v1\Comments::index');
+$routes->post('api/v1/comments', '\App\Controllers\API\v1\Comments::create');
+$routes->delete('api/v1/comments/(:num)', '\App\Controllers\API\v1\Comments::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

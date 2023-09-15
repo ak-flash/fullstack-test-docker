@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/default') ?>
 
 <?= $this->section('content') ?>
-<div class="p-lg-4">
+<div class="py-4 p-lg-4">
 	<h1 class="display-6 mb-4">
 		Комментарии
 	</h1>
@@ -9,34 +9,39 @@
     <div id="notification" class="d-none alert alert-success mb-4 p-2"></div>
 
     <div>
-        <div class="d-flex mb-4">
-            <div class="px-4">
-                Cортировка по:
+        <div class="row mb-4">
+            <div class="col-12 col-lg-6 d-flex">
+                <div class="px-4">
+                    Cортировка по:
+                </div>
+                <select id="sortBy" class="form-control" onchange="setSortOrder()">
+                    <option selected value="id">Id</option>
+                    <option value="date">дате добавления</option>
+                </select>
             </div>
-            <select id="sortBy" class="form-control" onchange="setSortOrder()">
-                <option selected value="id">Id</option>
-                <option value="date">дате добавления</option>
-            </select>
-            <div class="px-4">
-                Направление сортировки:
+            <div class="mt-4 mt-lg-0 col-12 col-lg-6 d-flex">
+                <div class="px-4">
+                    Направление сортировки:
+                </div>
+                <select id="orderBy" class="form-control" onchange="setSortOrder()">
+                    <option value="ASC">по возрастанию</option>
+                    <option selected value="DESC">по убыванию</option>
+                </select>
             </div>
-            <select id="orderBy" class="form-control" onchange="setSortOrder()">
-                <option value="ASC">по возрастанию</option>
-                <option selected value="DESC">по убыванию</option>
-            </select>
+
         </div>
 
         <template id="commentsTemplate">
-            <div class="border rounded p-4 mb-4 d-flex align-middle">
-                <div class="pr-2">
-                    ID: {{id}}
+            <div class="border rounded p-4 mb-4 d-flex">
+                <div class="my-auto">
+                    <strong>ID:</strong> {{id}}
                 </div>
-                <div class="w-100">
-                    <div class="d-flex justify-content-between border-bottom pb-3">
-                        <div>
-                           {{name}} ({{email}})
+                <div class="w-100 border-left pl-4">
+                    <div class="d-lg-flex my-auto justify-content-between border-bottom pb-3 ">
+                        <div class="order-1">
+                            <strong>{{name}}</strong> ({{email}})
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex my-auto justify-content-between order-2">
                             <span class="pr-4">
                                {{date}}
                             </span>
@@ -120,7 +125,7 @@
                     <div id="validationError-message" class="validationError" role="alert"></div>
                 </div>
 
-                <button id="btnAddComment" type="submit" class="btn btn-primary btn-sm">Отправить</button>
+                <button id="btnAddComment" type="submit" class="btn btn-primary btn-lg">Отправить</button>
             </form>
         </div>
     </div>
